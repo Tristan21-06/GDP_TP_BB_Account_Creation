@@ -4,9 +4,13 @@
     <div class="container">
         <h1 class="text-center mb-4">Inscription</h1>
 
-        {% for error in app.flashes('registration_error') %}
-            <div class="alert alert-danger">
-                {{ error }}
+        {% for type, messages in app.flashes %}
+            <div>
+                {% for message in messages %}
+                    <div class="alert alert-{{ type == 'error' ? 'danger' : (type == 'success' ? 'success' : 'warning') }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
             </div>
         {% endfor %}
 
