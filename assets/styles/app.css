@@ -1,0 +1,131 @@
+/* Global Styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f7fa; /* Fond légèrement gris */
+    margin: 0;
+    padding: 0;
+}
+
+/* Container Style */
+.container {
+    max-width: 600px;
+    margin: 50px auto; /* Centre le formulaire verticalement et horizontalement */
+    padding: 20px;
+    background-color: #fff; /* Fond blanc pour la zone de formulaire */
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Header */
+h1 {
+    font-size: 1.8rem;
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Alert Styles */
+.alert {
+    padding: 15px;
+    background-color: #f8d7da;
+    color: #721c24;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+/* Card Styles */
+.card {
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    background-color: #fff;
+}
+
+.card .p-4 {
+    padding: 16px;
+}
+
+/* Form Styles */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Espace entre les champs */
+}
+
+/* Input Fields */
+input,
+textarea,
+select {
+    padding: 12px;
+    font-size: 1rem;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
+    width: 100%;
+    box-sizing: border-box; /* Assure que les bordures ne déforment pas la largeur */
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+    outline: none;
+    border-color: #5fa2db; /* Couleur de bordure lors du focus */
+    box-shadow: 0 0 5px rgba(95, 162, 219, 0.5);
+}
+
+input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+input[type="submit"] {
+    padding: 12px;
+    font-size: 1rem;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+input[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+/* Label Styles */
+label {
+    font-size: 1rem;
+    color: #333;
+    margin-bottom: 8px;
+}
+
+/* Error Message Styles */
+form .form-error {
+    color: #e74c3c;
+    font-size: 0.875rem;
+    margin-top: 5px;
+}
+
+/* Styling for terms and conditions checkbox */
+.form-check {
+    display: flex;
+    align-items: center;
+}
+
+.form-check input {
+    width: auto;
+    margin-right: 10px;
+}
+
+/* Spacing for the form buttons and form elements */
+.mt-3 {
+    margin-top: 16px;
+}
+
+.mb-3 {
+    margin-bottom: 16px;
+}
+
+.text-center {
+    text-align: center;
+}
