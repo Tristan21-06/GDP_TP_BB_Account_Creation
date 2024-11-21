@@ -31,9 +31,11 @@ class UserType extends AbstractType
                 'required'  => true
             ])
             ->add('password', RepeatedType::class, [
-                'type'      => PasswordType::class,
-                'options'   => ['attr' => ['class' => 'form']],
-                'required'  => true
+                'first_options'     => ['label' => 'Mot de passe'],
+                'second_options'   => ['label' => 'Confirmation de mot de passe'],
+                'type'              => PasswordType::class,
+                'options'           => ['attr' => ['class' => 'form']],
+                'required'          => true
             ])
             ->add('public', CheckboxType::class, [
                 'label'     => 'J\'accepte les Termes & Conditions',

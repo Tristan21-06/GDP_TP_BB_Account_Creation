@@ -38,24 +38,23 @@ class UserController extends AbstractController
             $user = $userService->hashPassword($user);
             $user->setCreatedAt(new \DateTimeImmutable());
 
-            $request->getSession()->set('currentUser', $user);
-
             try {
                 $em->persist($user);
                 $em->flush();
-
+                
                 $message = new Email();
                 $message
-                    ->to($user->getEmail())
-                    ->from('noreply@ntcm.fr')
-                    ->text(
-                        sprintf(
-                            'Vous avez créé votre compte ! Pour accéder à votre profil, cliquez sur ce lien : %s',
-                            $this->generateUrl('app_profile', ['id' => $user->getId()], UrlGeneratorInterface::ABSOLUTE_URL)
+                ->to($user->getEmail())
+                ->from('noreply@ntcm.fr')
+                ->text(
+                    sprintf(
+                        'Vous avez créé votre compte ! Pour accéder à votre profil, cliquez sur ce lien : %s',
+                        $this->generateUrl('app_profile', ['id' => $user->getId()], UrlGeneratorInterface::ABSOLUTE_URL)
                         )
                     );
-
+                    
                 $transport->send($message);
+                $request->getSession()->set('currentUser', $user);
 
                 $this->addFlash('success', 'Vous avez été enregistré');
             } catch (UniqueConstraintViolationException $e) {
@@ -71,10 +70,21 @@ class UserController extends AbstractController
     }
 
     #[Route('/profile', name: 'app_profile')]
-    public function profile(): Response
+    public function profile(
+        Request $request
+    ): Response
     {
+         
+        $user = $request->getSession()->get('currentUser');
+
+        if (!$user) {
+            $this->addFlash('error', 'Vous devez vous inscrire pour accéder à cette page');
+            return $this->redirectToRoute('app_register');
+        }
+
         return $this->render('user/profile.html.twig', [
-        
+            'user' => $user, 
         ]);
-    }
+}
+
 }
