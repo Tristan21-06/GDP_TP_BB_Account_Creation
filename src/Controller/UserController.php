@@ -9,7 +9,10 @@
     use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
     use Symfony\Component\HttpFoundation\Request;
     use Symfony\Component\HttpFoundation\Response;
+    use Symfony\Component\Mailer\Transport\TransportInterface;
+    use Symfony\Component\Mime\Email;
     use Symfony\Component\Routing\Annotation\Route;
+    use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 
     class UserController extends AbstractController
@@ -18,7 +21,8 @@
         public function register(
             Request $request,
             EntityManagerInterface $em,
-            UserService $userService
+            UserService $userService,
+            TransportInterface $transport
         ): Response
         {
             $user = new User();
@@ -39,6 +43,19 @@
                 try {
                     $em->persist($user);
                     $em->flush();
+
+                    $message = new Email();
+                    $message
+                        ->to($user->getEmail())
+                        ->from('noreply@ntcm.fr')
+                        ->text(
+                            sprintf(
+                                'Vous avez créé votre compte ! Pour accéder à votre profil, cliquez sur ce lien : %s',
+                                $this->generateUrl('app_profile', ['id' => $user->getId()], UrlGeneratorInterface::ABSOLUTE_URL)
+                            )
+                        );
+
+                    $transport->send($message);
 
                     $this->addFlash('success', 'Vous avez été enregistré');
                 } catch (UniqueConstraintViolationException $e) {
