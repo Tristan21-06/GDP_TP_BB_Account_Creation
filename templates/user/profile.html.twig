@@ -1,0 +1,21 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+    <div class="container">
+        <h1>Mon Profil</h1>
+
+        <div class="profile-info">
+            <h2>Informations personnelles</h2>
+            <ul>
+                <li><strong>Prénom :</strong> {{ user.firstName }}</li>
+                <li><strong>Nom :</strong> {{ user.lastName }}</li>
+                <li><strong>Email :</strong> {{ user.email }}</li>
+            </ul>
+        </div>
+
+        <div class="profile-actions">
+            <a href="{{ path('profile_edit') }}" class="btn btn-secondary">Modifier mes informations</a>
+            <a href="{{ path('logout') }}" class="btn btn-danger">Se déconnecter</a>
+        </div>
+    </div>
+{% endblock %}
