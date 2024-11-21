@@ -62,8 +62,7 @@ class UserController extends AbstractController
                 $this->addFlash('error', 'Cet email est déjà utilisé');
             }
 
-            // TODO: redirect to app_profile
-            return $this->redirectToRoute('app_register');
+            return $this->redirectToRoute('app_profile');
         }
 
         return $this->render('user/registration.html.twig', [

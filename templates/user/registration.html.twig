@@ -1,0 +1,21 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+    <div class="container">
+        <h1 class="text-center mb-4">Inscription</h1>
+
+        {% for type, messages in app.flashes %}
+            <div>
+                {% for message in messages %}
+                    <div class="alert alert-{{ type == 'error' ? 'danger' : (type == 'success' ? 'success' : 'warning') }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            </div>
+        {% endfor %}
+
+        <div class="card p-4 shadow">
+            {{ form(registrationForm) }}
+          </div>
+    </div>
+{% endblock %}
