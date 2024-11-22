@@ -1,21 +1,28 @@
 {% extends "base.html.twig" %}
 
 {% block body %}
-    <div class="container">
-        <h1 class="text-center mb-4">Inscription</h1>
+    <div id="registration" class="container">
+        <div class="top-bar"></div>
 
-        {% for type, messages in app.flashes %}
-            <div>
-                {% for message in messages %}
-                    <div class="alert alert-{{ type == 'error' ? 'danger' : (type == 'success' ? 'success' : 'warning') }}">
-                        {{ message }}
-                    </div>
-                {% endfor %}
+        <div class="content">
+            <div class="header">
+                <h1>S'enregistrer</h1>
+                <small>Créez votre compte</small>
             </div>
-        {% endfor %}
 
-        <div class="card p-4 shadow">
+            <hr/>
+
+            {% for type, messages in app.flashes %}
+                <div>
+                    {% for message in messages %}
+                        <div class="alert alert-{{ type == 'error' ? 'danger' : (type == 'success' ? 'success' : 'warning') }}">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endfor %}
+
             {{ form(registrationForm) }}
-          </div>
+        </div>
     </div>
 {% endblock %}

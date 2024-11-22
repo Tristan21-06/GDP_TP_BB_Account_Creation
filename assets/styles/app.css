@@ -6,16 +6,6 @@ body {
     padding: 0;
 }
 
-/* Container Style */
-.container {
-    max-width: 600px;
-    margin: 50px auto; /* Centre le formulaire verticalement et horizontalement */
-    padding: 20px;
-    background-color: #fff; /* Fond blanc pour la zone de formulaire */
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
 /* Header */
 h1 {
     font-size: 1.8rem;
@@ -46,23 +36,12 @@ h1 {
 }
 
 /* Form Styles */
-form {
-    display: flex;
-    flex-direction: column;
-    gap: 20px; /* Espace entre les champs */
-}
+.form:has(div.form) {
+    justify-content: center;
 
-/* Input Fields */
-input,
-textarea,
-select {
-    padding: 12px;
-    font-size: 1rem;
-    border-radius: 4px;
-    border: 1px solid #ccc;
-    background-color: #f9f9f9;
-    width: 100%;
-    box-sizing: border-box; /* Assure que les bordures ne déforment pas la largeur */
+    > div {
+        gap: 20px 0; /* Espace entre les champs */
+    }
 }
 
 input:focus,
@@ -73,25 +52,6 @@ select:focus {
     box-shadow: 0 0 5px rgba(95, 162, 219, 0.5);
 }
 
-input[type="checkbox"] {
-    margin-right: 10px;
-}
-
-input[type="submit"] {
-    padding: 12px;
-    font-size: 1rem;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-input[type="submit"]:hover {
-    background-color: #0056b3;
-}
-
 /* Label Styles */
 label {
     font-size: 1rem;
@@ -99,22 +59,9 @@ label {
     margin-bottom: 8px;
 }
 
-/* Error Message Styles */
-form .form-error {
-    color: #e74c3c;
-    font-size: 0.875rem;
-    margin-top: 5px;
-}
-
 /* Styling for terms and conditions checkbox */
 .form-check {
-    display: flex;
-    align-items: center;
-}
-
-.form-check input {
-    width: auto;
-    margin-right: 10px;
+    margin-left: 2%;
 }
 
 /* Spacing for the form buttons and form elements */
@@ -128,4 +75,78 @@ form .form-error {
 
 .text-center {
     text-align: center;
+}
+
+.btn {
+    &.btn-primary {
+        background-color: var(--bs-orange);
+        border-color: var(--bs-orange);
+
+        &:hover {
+            background-color: white;
+            color: black;
+        }
+    }
+}
+
+input.form-control {
+    background-color: var(--bs-gray-300);
+}
+
+input.form-control, button[type="submit"] {
+    border-radius: 50px;
+}
+
+#registration {
+    &.container {
+        max-width: 600px;
+        padding: 0;
+
+        .row {
+            padding: 0;
+        }
+    }
+}
+
+.container {
+    position: relative;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin: 50px auto;
+
+    .top-bar {
+        height: 7vh;
+        background-color: var(--bs-orange);
+        top: 0;
+        left: 0;
+        border-radius: 10px 10px 0 0;
+    }
+
+    .content {
+        padding: 20px;
+
+        .header {
+            h1 {
+                margin: 0;
+                text-align: left;
+            }
+        }
+    }
+}
+
+div:has(.unmask) {
+    position: relative;
+
+    .unmask {
+        position: absolute;
+        right: 10px;
+        bottom: 0;
+        padding: 5px 15px;
+        cursor: pointer;
+
+        i {
+            font-size: 20px!important;
+        }
+    }
 }
