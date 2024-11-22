@@ -1,0 +1,46 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+    <main id="history-page" class="container">
+        <div class="top-bar"></div>
+
+        <div class="content">
+            <div class="header">
+                <h1>Historique d'inscription</h1>
+                <small>Liste des personnes inscrites</small>
+            </div>
+
+            <hr/>
+
+            {% for type, messages in app.flashes %}
+                <div>
+                    {% for message in messages %}
+                        <div class="alert alert-{{ type == 'error' ? 'danger' : (type == 'success' ? 'success' : 'warning') }}">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endfor %}
+
+            {% set elInRow = 3 %}
+            <div class="row gap-3 justify-content-center">
+                {% for user in users %}
+                    <div class="col-{{ elInRow }} card">
+                        <div class="card-header">
+                            {{ user.firstname }} {{ user.lastname }}
+                        </div>
+                        <div class="card-body">
+                            {{ user.email }} <br>
+                            <small><em>Inscrit le {{ user.createdAt|date('d/m/Y H:i:s') }}</em></small>
+                        </div>
+                    </div>
+                {% endfor %}
+
+                {% set missingElements = users|length % elInRow + 1 %}
+                {% for i in 0..(elInRow - missingElements) %}
+                    <div class="col-{{ elInRow }}"></div>
+                {% endfor %}
+            </div>
+        </div>
+    </main>
+{% endblock %}

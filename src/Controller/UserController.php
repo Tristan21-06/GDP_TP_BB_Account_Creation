@@ -4,6 +4,7 @@ namespace App\Controller;
 use App\Entity\User;
 use App\Form\ProfileType;
 use App\Form\RegistrationType;
+use App\Repository\UserRepository;
 use App\Service\UserService;
 use Doctrine\DBAL\Exception\UniqueConstraintViolationException;
 use Doctrine\ORM\EntityManagerInterface;
@@ -130,5 +131,21 @@ class UserController extends AbstractController
         ]);
     }
     
+    #[Route('/history', name: 'app_history', methods: ['GET', 'POST'])]
+    public function history(
+        Request $request,
+        UserRepository $userRepository,
+    ): Response{
+        /** @var User $user */
+        $user = $request->getSession()->get('currentUser');
 
+        if (!$user) {
+            $this->addFlash('error', 'Vous devez vous inscrire pour accéder à cette page');
+            return $this->redirectToRoute('app_register');
+        }
+
+        return $this->render('user/history.html.twig', [
+            'users' => $userRepository->findAll(),
+        ]);
+    }
 }
