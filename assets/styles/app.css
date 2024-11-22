@@ -29,10 +29,10 @@ h1 {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
     background-color: #fff;
-}
 
-.card .p-4 {
-    padding: 16px;
+    .p-4 {
+        padding: 16px;
+    }
 }
 
 /* Form Styles */
@@ -65,12 +65,9 @@ label {
 }
 
 /* Spacing for the form buttons and form elements */
-.mt-3 {
-    margin-top: 16px;
-}
-
 .mb-3 {
     margin-bottom: 16px;
+    margin-top: 16px;
 }
 
 .text-center {
@@ -97,14 +94,9 @@ input.form-control, button[type="submit"] {
     border-radius: 50px;
 }
 
-#registration {
+#registration-page {
     &.container {
         max-width: 600px;
-        padding: 0;
-
-        .row {
-            padding: 0;
-        }
     }
 }
 
@@ -114,6 +106,11 @@ input.form-control, button[type="submit"] {
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     margin: 50px auto;
+    padding: 0;
+
+    & form.form > div.row {
+        padding: 0;
+    }
 
     .top-bar {
         height: 7vh;

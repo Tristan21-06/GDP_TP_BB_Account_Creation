@@ -1,14 +1,18 @@
 {% extends "base.html.twig" %}
 
 {% block body %}
-    <div class="container">
-        <h1>Mon Profil</h1>
-         <div class="card p-4 shadow">
+    <main id="profile-page" class="container">
+        <div class="top-bar"></div>
+
+        <div class="content">
+            <div class="header">
+                <h1>Mon Profil</h1>
+                <small>Modifier mon profil</small>
+            </div>
+
+            <hr/>
+
             {{ form(profileForm) }}
         </div>
-
-        <div class="profile-actions">
-            <a href="{{ path('app_profile') }}" class="btn btn-secondary">Modifier mes informations</a>
-        </div>
-    </div>
+    </main>
 {% endblock %}

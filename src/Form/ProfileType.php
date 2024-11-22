@@ -18,20 +18,48 @@ class ProfileType extends AbstractType
         $builder
             ->add('lastname', TextType::class, [
                 'label'     => 'Nom',
-                'required'  => true
+                'required'  => true,
+                'attr'  => [
+                    'class' => 'form-control',
+                ],
+                'row_attr'  => [
+                    'class' => 'col-6',
+                ]
             ])
             ->add('firstname', TextType::class, [
                 'label'     => 'Prénom',
-                'required'  => true
+                'required'  => true,
+                'attr'  => [
+                    'class' => 'form-control',
+                ],
+                'row_attr'  => [
+                    'class' => 'col-6',
+                ]
             ])
             ->add('password', RepeatedType::class, [
                 'first_options'     => ['label' => 'Mot de passe'],
                 'second_options'   => ['label' => 'Confirmation de mot de passe'],
                 'type'      => PasswordType::class,
-                'options'   => ['attr' => ['class' => 'form']],
+                'options'           => [
+                    'attr' => [
+                        'class' => 'form-control',
+                        'data-pwd' => '',
+                    ],
+                    'row_attr' => [
+                        'class' => 'col-6',
+                    ]
+                ],
                 'required'  => true
             ])
-            ->add('submit', SubmitType::class)
+            ->add('submit', SubmitType::class, [
+                'attr' => [
+                    'class' => 'btn btn-primary col-6 col-offset-2',
+                ],
+                'row_attr' => [
+                    'class' => 'text-center',
+                ],
+                'label' => 'Modifier mes informations'
+            ])
         ;
     }
 
@@ -39,7 +67,7 @@ class ProfileType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => User::class,
-            'attr' => ['class' => 'form']
+            'attr' => ['class' => 'form row']
         ]);
     }
 }

@@ -71,7 +71,8 @@ class UserType extends AbstractType
                 ],
                 'row_attr' => [
                     'class' => 'text-center',
-                ]
+                ],
+                'label' => "Valider"
             ])
         ;
     }
