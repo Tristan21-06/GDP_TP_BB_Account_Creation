@@ -2,8 +2,6 @@ function handleDisplayPassword(parentDiv) {
     const inputPassword = parentDiv.querySelector('input[data-pwd]');
     const unmaskIcon = parentDiv.querySelector('.unmask > i');
 
-    console.log(inputPassword)
-
     if(inputPassword.type === 'password') {
         inputPassword.type = "text"
 
