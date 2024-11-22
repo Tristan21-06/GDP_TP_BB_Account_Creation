@@ -3,14 +3,8 @@
 {% block body %}
     <div class="container">
         <h1>Mon Profil</h1>
-
-        <div class="profile-info">
-            <h2>Informations personnelles</h2>
-            <ul>
-                <li><strong>Prénom :</strong> {{ user.firstName }}</li>
-                <li><strong>Nom :</strong> {{ user.lastName }}</li>
-                <li><strong>Email :</strong> {{ user.email }}</li>
-            </ul>
+         <div class="card p-4 shadow">
+            {{ form(profileForm) }}
         </div>
 
         <div class="profile-actions">
