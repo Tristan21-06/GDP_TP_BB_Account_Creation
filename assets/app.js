@@ -6,6 +6,6 @@
  * which should already be in your base.html.twig.
  */
 import './styles/app.css';
-import './js/password.js';
+import './js/password_mask.js';
 
 console.log('This log comes from assets/app.js - welcome to AssetMapper! 🎉');

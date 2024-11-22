@@ -17,8 +17,6 @@ h1 {
 /* Alert Styles */
 .alert {
     padding: 15px;
-    background-color: #f8d7da;
-    color: #721c24;
     border-radius: 5px;
     margin-bottom: 20px;
 }
@@ -108,10 +106,6 @@ input.form-control, button[type="submit"] {
     margin: 50px auto;
     padding: 0;
 
-    & form.form > div.row {
-        padding: 0;
-    }
-
     .top-bar {
         height: 7vh;
         background-color: var(--bs-orange);
@@ -122,6 +116,14 @@ input.form-control, button[type="submit"] {
 
     .content {
         padding: 20px;
+
+        & form.form > div.row {
+            padding: 0;
+
+            & > ul {
+                display: none;
+            }
+        }
 
         .header {
             h1 {

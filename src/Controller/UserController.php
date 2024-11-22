@@ -11,6 +11,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Profiler\Profile;
+use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
 use Symfony\Component\Mailer\Transport\TransportInterface;
 use Symfony\Component\Mime\Email;
 use Symfony\Component\Routing\Annotation\Route;
@@ -72,26 +73,6 @@ class UserController extends AbstractController
         ]);
     }
 
-    /*
-    #[Route('/profile', name: 'app_profile')]
-    public function profile(
-        Request $request
-    ): Response
-    {
-         
-        $user = $request->getSession()->get('currentUser');
-
-        if (!$user) {
-            $this->addFlash('error', 'Vous devez vous inscrire pour accéder à cette page');
-            return $this->redirectToRoute('app_register');
-        }
-
-        return $this->render('user/profile.html.twig', [
-            'user' => $user, 
-        ]);
-    }
-    */
-
     #[Route('/profile', name: 'app_profile', methods: ['GET', 'POST'])]
     public function profile(
         Request $request,
@@ -100,6 +81,7 @@ class UserController extends AbstractController
         TransportInterface $transport,
     ): Response
     {
+        /** @var User $user */
         $user = $request->getSession()->get('currentUser');
 
         if (!$user) {
@@ -107,42 +89,39 @@ class UserController extends AbstractController
             return $this->redirectToRoute('app_register');
         }
 
-        $form = $this->createForm(ProfileType::class, $user, [
-            'allow_extra_fields' => true,  
-        ]);
+        $oldPassword = $user->getPassword();
+
+        $form = $this->createForm(ProfileType::class, $user);
     
         $form->handleRequest($request);
-    
         if ($form->isSubmitted() && $form->isValid()) {
-            if ($user->getPassword() && !$userService->isPasswordSecured($user->getPassword())) {
-                $this->addFlash('error', "Le mot de passe n'est pas sécurisé");
-                return $this->redirectToRoute('app_profile');
-            }
-    
-            if ($user->getPassword()) {
+            if ($user->getPassword() !== null) {
+                if (!$userService->isPasswordSecured($user->getPassword())) {
+                    $this->addFlash('error', "Le mot de passe n'est pas sécurisé");
+                    return $this->redirectToRoute('app_profile');
+                }
+
                 $user = $userService->hashPassword($user);
+            } else {
+                $user->setPassword($oldPassword);
             }
-    
-            $em->flush();
 
             try {
+                $em->flush();
+
                 $message = new Email();
                 $message
                     ->to($user->getEmail())
                     ->from('noreply@ntcm.fr')
-                    ->text(
-                        sprintf(
-                            'Votre profil a été mis à jour ! Pour voir vos nouvelles informations, vous pouvez visiter votre profil.',
-                            $this->generateUrl('app_profile', ['id' => $user->getId()], UrlGeneratorInterface::ABSOLUTE_URL)
-                        )
-                    );
+                    ->text('Votre profil a été mis à jour ! Pour voir vos nouvelles informations, vous pouvez visiter votre profil.');
                 
                 $transport->send($message);
-            } catch (\Exception $e) {
+
+                $this->addFlash('success', 'Votre profil a été mis à jour');
+            } catch (TransportExceptionInterface $e) {
                 $this->addFlash('warning', 'Une erreur est survenue lors de l\'envoi de l\'email.');
             }
-    
-            $this->addFlash('success', 'Votre profil a été mis à jour');
+
             return $this->redirectToRoute('app_profile');
         }
     

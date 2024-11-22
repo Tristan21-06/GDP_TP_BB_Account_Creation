@@ -12,6 +12,24 @@
 
             <hr/>
 
+            {% for type, messages in app.flashes %}
+                <div>
+                    {% for message in messages %}
+                        <div class="alert alert-{{ type == 'error' ? 'danger' : (type == 'success' ? 'success' : 'warning') }}">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endfor %}
+
+            <div>
+                {% for error in profileForm.vars.errors %}
+                    <div class="alert alert-danger">
+                        {{ error.message }}
+                    </div>
+                {% endfor %}
+            </div>
+
             {{ form(profileForm) }}
         </div>
     </main>

@@ -47,9 +47,11 @@ class ProfileType extends AbstractType
                     ],
                     'row_attr' => [
                         'class' => 'col-6',
-                    ]
+                    ],
+                    'empty_data' => '',
                 ],
-                'required'  => true
+                'error_bubbling' => true,
+                'required'  => false
             ])
             ->add('submit', SubmitType::class, [
                 'attr' => [
