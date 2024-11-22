@@ -3,7 +3,7 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Form\ProfileType;
-use App\Form\UserType;
+use App\Form\RegistrationType;
 use App\Service\UserService;
 use Doctrine\DBAL\Exception\UniqueConstraintViolationException;
 use Doctrine\ORM\EntityManagerInterface;
@@ -28,7 +28,7 @@ class UserController extends AbstractController
     ): Response
     {
         $user = new User();
-        $form = $this->createForm(UserType::class, $user);
+        $form = $this->createForm(RegistrationType::class, $user);
 
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()) {
