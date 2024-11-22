@@ -61,6 +61,7 @@ class UserController extends AbstractController
                 $this->addFlash('success', 'Vous avez été enregistré');
             } catch (UniqueConstraintViolationException $e) {
                 $this->addFlash('error', 'Cet email est déjà utilisé');
+                return $this->redirectToRoute('app_register');
             }
 
             return $this->redirectToRoute('app_profile');

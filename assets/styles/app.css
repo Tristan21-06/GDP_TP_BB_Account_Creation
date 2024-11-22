@@ -1,3 +1,152 @@
+/* Global Styles */
 body {
-    background-color: skyblue;
+    font-family: Arial, sans-serif;
+    background-color: #f4f7fa; /* Fond légèrement gris */
+    margin: 0;
+    padding: 0;
+}
+
+/* Header */
+h1 {
+    font-size: 1.8rem;
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Alert Styles */
+.alert {
+    padding: 15px;
+    background-color: #f8d7da;
+    color: #721c24;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+/* Card Styles */
+.card {
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    background-color: #fff;
+}
+
+.card .p-4 {
+    padding: 16px;
+}
+
+/* Form Styles */
+.form:has(div.form) {
+    justify-content: center;
+
+    > div {
+        gap: 20px 0; /* Espace entre les champs */
+    }
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+    outline: none;
+    border-color: #5fa2db; /* Couleur de bordure lors du focus */
+    box-shadow: 0 0 5px rgba(95, 162, 219, 0.5);
+}
+
+/* Label Styles */
+label {
+    font-size: 1rem;
+    color: #333;
+    margin-bottom: 8px;
+}
+
+/* Styling for terms and conditions checkbox */
+.form-check {
+    margin-left: 2%;
+}
+
+/* Spacing for the form buttons and form elements */
+.mt-3 {
+    margin-top: 16px;
+}
+
+.mb-3 {
+    margin-bottom: 16px;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.btn {
+    &.btn-primary {
+        background-color: var(--bs-orange);
+        border-color: var(--bs-orange);
+
+        &:hover {
+            background-color: white;
+            color: black;
+        }
+    }
+}
+
+input.form-control {
+    background-color: var(--bs-gray-300);
+}
+
+input.form-control, button[type="submit"] {
+    border-radius: 50px;
+}
+
+#registration {
+    &.container {
+        max-width: 600px;
+        padding: 0;
+
+        .row {
+            padding: 0;
+        }
+    }
+}
+
+.container {
+    position: relative;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin: 50px auto;
+
+    .top-bar {
+        height: 7vh;
+        background-color: var(--bs-orange);
+        top: 0;
+        left: 0;
+        border-radius: 10px 10px 0 0;
+    }
+
+    .content {
+        padding: 20px;
+
+        .header {
+            h1 {
+                margin: 0;
+                text-align: left;
+            }
+        }
+    }
+}
+
+div:has(.unmask) {
+    position: relative;
+
+    .unmask {
+        position: absolute;
+        right: 10px;
+        bottom: 0;
+        padding: 5px 15px;
+        cursor: pointer;
+
+        i {
+            font-size: 20px!important;
+        }
+    }
 }

@@ -20,29 +20,59 @@ class UserType extends AbstractType
         $builder
             ->add('lastname', TextType::class, [
                 'label'     => 'Nom',
-                'required'  => true
+                'required'  => true,
+                'attr'  => [
+                    'class' => 'form-control',
+                ],
+                'row_attr'  => [
+                    'class' => 'col-6',
+                ]
             ])
             ->add('firstname', TextType::class, [
                 'label'     => 'Prénom',
-                'required'  => true
+                'required'  => true,
+                'attr'  => [
+                    'class' => 'form-control',
+                ],
+                'row_attr'  => [
+                    'class' => 'col-6',
+                ]
             ])
             ->add('email', EmailType::class, [
                 'label'     => 'Email',
-                'required'  => true
+                'required'  => true,
+                'attr'  => [
+                    'class' => 'form-control',
+                ]
             ])
             ->add('password', RepeatedType::class, [
                 'first_options'     => ['label' => 'Mot de passe'],
                 'second_options'   => ['label' => 'Confirmation de mot de passe'],
                 'type'              => PasswordType::class,
-                'options'           => ['attr' => ['class' => 'form']],
-                'required'          => true
+                'options'           => [
+                    'attr' => [
+                        'class' => 'form-control',
+                        'data-pwd' => '',
+                    ]
+                ],
+                'required'          => true,
             ])
             ->add('public', CheckboxType::class, [
                 'label'     => 'J\'accepte les Termes & Conditions',
                 'required'  => true,
-                'mapped'    => false
+                'mapped'    => false,
+                'row_attr'  => ['class' => 'form-check col-12',],
+                'attr'  => ['class' => 'form-check-input',],
+                'label_attr'  => ['class' => 'form-check-label',]
             ])
-            ->add('submit', SubmitType::class)
+            ->add('submit', SubmitType::class, [
+                'attr' => [
+                    'class' => 'btn btn-primary col-8 col-offset-2',
+                ],
+                'row_attr' => [
+                    'class' => 'text-center',
+                ]
+            ])
         ;
     }
 
@@ -50,7 +80,7 @@ class UserType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => User::class,
-            'attr' => ['class' => 'form']
+            'attr' => ['class' => 'form row']
         ]);
     }
 }
