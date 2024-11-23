@@ -22,3 +22,10 @@ Pour un **administrateur**, il devra avoir la possibilité d'accéder à l'histo
 - Utilisateur : Une personne physique connectée au site.
 - Administrateur : Une personne physique connectée au site avec des droits supérieurs par rapport aux utilisateurs.
 - Historique des inscriptions : Contient la liste des utilisateurs qui sont inscrits avec leur nom, prénom, email et date d'inscription.
+
+Camille GENTILI
+Matthieu GARCIA
+Nathan PICOT (l'homme mystère)
+Tristan JACQUEMARD
+
+[Trello](https://trello.com/b/FXTetAkJ/application-cr%C3%A9ation-de-compte)
